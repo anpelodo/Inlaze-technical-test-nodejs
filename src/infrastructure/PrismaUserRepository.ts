@@ -4,7 +4,7 @@ import { User, UserUpdateDTO, UserWithoutIdDTO } from "../domain/User";
 import { UserRepository } from "../domain/UserRepository";
 
 export class PrismaUserRepository implements UserRepository {
-  constructor(readonly db: PrismaClient) {}
+  constructor(private readonly db: PrismaClient) {}
 
   async add(user: UserWithoutIdDTO): Promise<User> {
     const { name, email } = { ...user };
@@ -63,11 +63,6 @@ export class PrismaUserRepository implements UserRepository {
         skip: skip,
         take: size
       });
-
-      // check if users[] are empty
-      if (users.length === 0) {
-        return null;
-      }
 
       return users;
     } catch (error) {

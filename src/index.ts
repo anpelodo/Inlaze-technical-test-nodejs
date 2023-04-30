@@ -1,7 +1,6 @@
 import { config as dotEnvConfig } from "dotenv";
 dotEnvConfig();
 
-import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
 import morgan from "morgan";
@@ -14,7 +13,7 @@ function main() {
 
   app.use(morgan("tiny"));
   app.use(cors());
-  app.use(bodyParser.json());
+  app.use(express.json());
   app.get("/health", (_req, res) => {
     res.status(200).send("ok");
   });

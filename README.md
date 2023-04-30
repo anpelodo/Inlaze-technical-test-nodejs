@@ -3,11 +3,11 @@
 Crear un API que permita gestionar información de películas
 
 1. **Endpoints**
-  - [ ] Crear usuarios
-  - [ ] Editar usuarios
-  - [ ] Eliminar usuarios
-  - [ ] Listar usuarios
-  - [ ] Obtener usuario
+  - [x] Crear usuarios
+  - [x] Editar usuarios
+  - [x] Eliminar usuarios
+  - [x] Listar usuarios
+  - [x] Obtener usuario
   - [ ] Crear películas
   - [ ] Editar películas
   - [ ] Eliminar películas
