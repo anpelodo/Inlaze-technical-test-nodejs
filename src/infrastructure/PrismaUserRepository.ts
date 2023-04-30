@@ -1,12 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 
-import { User } from "../domain/User";
+import { User, UserUpdateDTO, UserWithoutIdDTO } from "../domain/User";
 import { UserRepository } from "../domain/UserRepository";
 
 export class PrismaUserRepository implements UserRepository {
     constructor(readonly db: PrismaClient) { }
 
-    async add(user: Omit<User, "id">): Promise<User> {
+    async add(user: UserWithoutIdDTO): Promise<User> {
         const { name, email } = { ...user }
 
         try {
@@ -23,7 +23,7 @@ export class PrismaUserRepository implements UserRepository {
         }
     }
 
-    async edit(id: number, partialUser: Partial<Omit<User, "id">>): Promise<void> {
+    async edit(id: number, partialUser: UserUpdateDTO): Promise<void> {
         const { email, name } = { ...partialUser };
 
         try {

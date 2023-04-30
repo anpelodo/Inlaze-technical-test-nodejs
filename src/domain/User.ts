@@ -5,3 +5,6 @@ export class User {
         readonly name: string
     ) { }
 }
+
+export type UserWithoutIdDTO = Omit<User, "id">;
+export type UserUpdateDTO = Partial<UserWithoutIdDTO>;
