@@ -23,11 +23,11 @@ export class PrismaUserRepository implements UserRepository {
     }
   }
 
-  async edit(id: number, partialUser: UserUpdateDTO): Promise<void> {
+  async edit(id: number, partialUser: UserUpdateDTO): Promise<User> {
     const { email, name } = { ...partialUser };
 
     try {
-      await this.db.user.update({
+      const user = await this.db.user.update({
         where: {
           id: id
         },
@@ -37,7 +37,7 @@ export class PrismaUserRepository implements UserRepository {
         }
       });
 
-      return Promise.resolve();
+      return user;
     } catch (error) {
       return Promise.reject();
     }
@@ -57,7 +57,7 @@ export class PrismaUserRepository implements UserRepository {
     }
   }
 
-  async getList(skip?: number, size?: number): Promise<User[] | null> {
+  async getList(skip?: number, size?: number): Promise<User[]> {
     try {
       const users = await this.db.user.findMany({
         skip: skip,

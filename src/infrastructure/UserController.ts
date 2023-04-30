@@ -16,7 +16,7 @@ export class UserController implements CrudController {
       .create({ name, email })
       .catch(() => res.status(500));
 
-    res.status(200).send({
+    res.status(201).send({
       user
     });
   }
@@ -27,11 +27,11 @@ export class UserController implements CrudController {
 
     //TODO use validator
 
-    await this.userCrud
+    const user = await this.userCrud
       .edit(Number(id), { name, email })
       .catch(() => res.status(500));
 
-    res.status(200).send();
+    res.status(200).send({ user });
   }
 
   async delete(req: Request, res: Response) {
@@ -41,7 +41,9 @@ export class UserController implements CrudController {
 
     await this.userCrud.delete(Number(id)).catch(() => res.status(500));
 
-    res.status(200).send();
+    res.status(200).send({
+      id
+    });
   }
 
   async getList(_req: Request, res: Response) {
@@ -58,6 +60,10 @@ export class UserController implements CrudController {
     const user = await this.userCrud
       .getById(Number(id))
       .catch(() => res.status(500));
+
+    if (!user) {
+      res.status(404);
+    }
 
     res.status(200).send({
       user
