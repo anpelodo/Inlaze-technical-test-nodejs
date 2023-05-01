@@ -25,11 +25,11 @@ model Movie {
   imageUrl    String
   description String
   rankingAvg  Float        @default(0.0)
-  voteCount   Int?
+  voteCount   Int          @default(0)
   language    String
   genres      MovieGenre[]
   critic      String?
-  editor      User         @relation(fields: [userId], references: [id])
+  editor      User         @relation(fields: [userId], references: [id], onUpdate: Cascade)
   userId      Int
 
   @@index([title, rankingAvg])
@@ -37,9 +37,9 @@ model Movie {
 
 model MovieGenre {
   id      Int   @id @default(autoincrement())
-  movie   Movie @relation(fields: [movieId], references: [id])
+  movie   Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
   movieId Int
-  genre   Genre @relation(fields: [genreId], references: [id])
+  genre   Genre @relation(fields: [genreId], references: [id], onDelete: Cascade)
   genreId Int
 }
 
