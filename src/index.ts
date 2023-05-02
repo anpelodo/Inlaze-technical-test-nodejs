@@ -4,6 +4,7 @@ dotEnvConfig();
 import cors from "cors";
 import express from "express";
 import morgan from "morgan";
+import path from "path";
 import swaggerJSDoc, { Options } from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 
@@ -20,7 +21,12 @@ function main() {
         version: "1.0.0"
       }
     },
-    apis: ["./infrastructure/routes/*.ts"]
+    servers: [
+      {
+        url: "http://localhost:3000"
+      }
+    ],
+    apis: [`${path.join(__dirname, "./infrastructure/routes/*.ts")}`]
   };
 
   app.use(morgan("tiny"));
