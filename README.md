@@ -23,3 +23,9 @@ Crear un API que permita gestionar información de películas
 4. El API debe contar con autenticación
 5. Generar documentación swagger
 6. Pruebas unitarias y de integraciónas
+
+--------------------------------------------
+## Commands
+* **Start the schemas DB:** npm run prismaInit
+* **Start development runtime:** npm run dev 
+* **Start Prisma Studio:** npx prisma studio
